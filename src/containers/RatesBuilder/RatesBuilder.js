@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/AuxCmponent';
 import RateElement from '../../components/RateElement/RateElement';
+import Modal from '../../components/UI/Modal/Modal';
+import RateSummary from '../../components/RateSummary/RateSummary';
 
 class RatesBuilder extends Component {
     state = {
@@ -23,13 +25,27 @@ class RatesBuilder extends Component {
                 toTockenName: 'tokenNameTo',
                 toTokenRate: 444,
             }
-        ]
+        ],
+        showModal: false
+
     }
-    render() {  
+
+    openModalModalHandler = () => {
+        this.setState({showModal: true});
+    }
+
+    closeModalModalHandler = () => {
+        this.setState({showModal: false});
+    }
+
+    render() {
         return (
             <Aux>
-                <RateElement rateData={this.state.ratesList[0]}/>
-                <RateElement rateData={this.state.ratesList[1]}/>
+                <Modal show={this.state.showModal} modalClosed={this.closeModalModalHandler}>
+                    <RateSummary rateData={this.state.ratesList[0]}/>
+                </Modal>
+                <RateElement onClick={this.openModalModalHandler} rateData={this.state.ratesList[0]} />
+                <RateElement onClick={this.openModalModalHandler} rateData={this.state.ratesList[1]}/>
             </Aux>
         );
     }

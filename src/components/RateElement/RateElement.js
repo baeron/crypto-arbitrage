@@ -7,7 +7,7 @@ const rateElement = (props) => {
             return <p key={rateKey}>{props.rateData[rateKey]}</p>
         }); 
     return (
-        <div className={classes.RateElement}>
+        <div className={classes.RateElement} onClick={props.onClick}>
             <p>Rate Element</p>
             {rateData}
         </div>
