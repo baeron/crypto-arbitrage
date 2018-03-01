@@ -17,12 +17,20 @@ class RateList extends Component {
         axios.get('/rate')
             .then(response => {
                 this.setState({ratesList: response.data, loading: true});
-                console.log(response);
+                //console.log(response);
             })
             .catch(error => {
                 this.setState({loading: false});
                 console.log(error);
             });
+    }
+
+    openModalModalHandler = () => {
+        this.setState({showModal: true});
+    }
+
+    closeModalModalHandler = () => {
+        this.setState({showModal: false});
     }
 
     render() {
@@ -31,7 +39,7 @@ class RateList extends Component {
             ratesListComponent = (
                 <div>
                     {/*<p>Main container work</p>*/}
-                    <RateListCreator ratesElements={this.state.ratesList}/>
+                    <RateListCreator ratesElements={this.state.ratesList} showModal={this.state.showModal} clicked={this.openModalModalHandler} modalClosed={this.closeModalModalHandler}/>
                 </div>
             )
         }
